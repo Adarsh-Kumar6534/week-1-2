@@ -1,0 +1,37 @@
+class BankAccount:
+  def __init__(self, account, number, balance, pin):
+      self.__account = account
+      self.__number = number
+      self.__balance = balance
+      self.__pin = pin
+
+  def withdraw(self, amount, pin):
+      if self.__pin == pin:
+          if amount > 0 and amount <= self.__balance:
+              self.__balance -= amount
+              print(f"Withdrawal of ${amount} successful. New balance: ${self.__balance}")
+          else:
+              print("Invalid withdrawal amount or insufficient funds.")
+      else:
+          print("Invalid PIN. Withdrawal denied.")
+
+  def deposit(self, amount):
+      if amount > 0:
+          self.__balance += amount
+          print(f"Deposit of ${amount} successful. New balance: ${self.__balance}")
+      else:
+          print("Invalid deposit amount.")
+
+  def get_balance(self, pin):
+      if self.__pin == pin:
+          print(f"Account balance: ${self.__balance}")
+      else:
+          print("Invalid PIN. Access denied.")
+
+account1 = BankAccount("Savings", "123456789", 1000, "1234")
+
+
+account1.deposit(500)  
+account1.withdraw(200, "1234") 
+account1.get_balance("1234")  
+account1.withdraw(300, "5678")  
